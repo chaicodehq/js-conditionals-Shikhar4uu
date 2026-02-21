@@ -1,3 +1,4 @@
+
 /**
  * 🔒 SecureApp Password Checker
  *
@@ -27,4 +28,42 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  let criteria_met = 0;
+  if (typeof password != "string" || password.length === 0) {
+    return "weak";
+  }
+  
+  if (password.length >= 8) {
+    criteria_met++;
+  }
+  if (/[A-Z]/.test(password)) {
+    criteria_met++;
+  }
+  if (/[a-z]/.test(password)) {
+    criteria_met++;
+  }
+  if (/[0-9]/.test(password)) {
+    criteria_met++;
+  }
+  if (/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)) {
+    criteria_met++;
+  }
+  
+  switch (criteria_met){
+    case 0:
+      return "weak";
+    case 1:
+      return "weak";
+    case 2:
+      return "medium";
+    case 3:
+      return "medium";
+    case 4:
+      return "strong";
+    case 5:
+      return "very strong";
+  }
+
+
+
 }

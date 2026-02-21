@@ -32,4 +32,55 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+  //   - If size is not "small", "medium", or "large", return -1
+  //  *   - If type is not "regular", "latte", "cappuccino", or "mocha", return -1
+  //  *   - Return the total price rounded to 2 decimal places
+
+  if (size != "small" && size != "medium" && size != "large") {
+    return -1;
+  } else if (
+    type != "regular" &&
+    type != "latte" &&
+    type != "cappuccino" &&
+    type != "mocha"
+  ) {
+    return -1;
+  }
+
+  let total_price;
+
+  if (size === "small") {
+    total_price = 3.0 + type_calculator(type);
+  } else if (size === "medium") {
+    total_price = 4.0 + type_calculator(type);
+  } else if (size === "large") {
+    total_price = 5.0 + type_calculator(type);
+  }
+
+  if (extras.extraShot === true && extras.whippedCream === true) {
+    total_price = total_price + 0.5 + 0.75;
+    return total_price;
+  } else {
+    if (extras.extraShot) {
+      total_price = total_price + 0.75;
+      return total_price;
+    } else if (extras.whippedCream) {
+      total_price = total_price + 0.5;
+      return total_price;
+    } else {
+      return total_price;
+    }
+  }
+
+  function type_calculator(type) {
+    if (type === "regular") {
+      return 0.0;
+    } else if (type === "latte") {
+      return 1.0;
+    } else if (type === "cappuccino") {
+      return 1.5;
+    } else if (type === "mocha") {
+      return 2.0;
+    }
+  }
 }
